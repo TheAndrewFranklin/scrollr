@@ -1,0 +1,7 @@
+{
+  "name": "scrollr",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
