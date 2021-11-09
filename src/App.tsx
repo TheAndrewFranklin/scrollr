@@ -21,24 +21,50 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Register from './components/Register';
+import Login from './components/Login';
+import Home from './pages/Home';
+import { AuthContext, AuthProvider } from './contexts/Auth';
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Switch>
-          <Route exact path="/register">
-            <div style={{display:'flex',alignItems:'center',justifyContent:'center', minHeight:'100vh'}}>
-              <Register />
-            </div>
-          </Route>
-          <Route path="/">
-            <Redirect to="/register" />
-          </Route>
-        </Switch>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-);
+const App: React.FC = () => {
+  return (
+    <AuthProvider>
+      <IonApp>
+        <IonReactRouter>
+          <IonRouterOutlet>
+            <AuthContext.Consumer>
+            {(currentUser) => (
+              currentUser ? (
+                <Switch>
+                  <Route exact path="/home">
+                    <Home />
+                  </Route>
+                  <Route path="/">
+                    <Redirect to="/home" />
+                  </Route>
+                </Switch>
+                ) : (
+                <Switch>
+                  <Route exact path="/login">
+                    <div style={{display:'flex',alignItems:'center',justifyContent:'center', minHeight:'100vh'}}>
+                      <Login />
+                    </div>
+                  </Route>
+                  <Route exact path="/register">
+                    <div style={{display:'flex',alignItems:'center',justifyContent:'center', minHeight:'100vh'}}>
+                      <Register />
+                    </div>
+                  </Route>
+                  <Route path="/">
+                    <Redirect to="/login" />
+                  </Route>
+                </Switch>
+                ))}
+            </AuthContext.Consumer>
+          </IonRouterOutlet>
+        </IonReactRouter>
+      </IonApp>
+    </AuthProvider>
+  )
+};
 
 export default App;
