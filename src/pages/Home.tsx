@@ -11,9 +11,14 @@ export default function Home() {
     }
   }
 
+  const handleClick = () => {
+    console.log(auth.currentUser)
+  }
+
   return (
-    <div style={{display:'flex',alignItems:'center',justifyContent:'center',minHeight:'100vh'}}>
-      <Button onClick={handleLogout}>Logout</Button>
+    <div style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',minHeight:'100vh'}}>
+      <Button onClick={handleLogout} style={{margin:'4px'}}>Logout</Button>
+      <Button onClick={handleClick} style={{margin:'4px'}}>Print User</Button>
     </div>
   )
 }

@@ -19,10 +19,6 @@ export default function Login() {
     }
   }
 
-  const handleClick = () => {
-    console.log(auth.currentUser)
-  }
-
   return (
     <Card>
       <Card.Body>
@@ -37,7 +33,6 @@ export default function Login() {
           </Form.Group>
           <Button className="w-100" type="submit">Submit</Button>
         </Form>
-        <Button onClick={handleClick}>Print User</Button>
       </Card.Body>
     </Card>
   )
