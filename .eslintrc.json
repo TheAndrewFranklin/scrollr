@@ -22,10 +22,15 @@
         "@typescript-eslint",
         "prettier"
     ],
-    "ignorePatterns": ["src/serviceWorkerRegistration.ts"],
+    "ignorePatterns": [
+        "src/serviceWorkerRegistration.ts",
+        "src/service-worker.ts",
+        "src/setupTests.ts",
+        "capacitor.config.ts"
+    ],
     "rules": {
-        "max-len": ["warn", { "code": 80 }],
         "react/react-in-jsx-scope": "off",
+        "max-len": ["warn", { "code": 80 }],
         "prettier/prettier": "warn",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
