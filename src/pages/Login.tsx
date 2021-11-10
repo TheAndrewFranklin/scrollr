@@ -1,23 +1,27 @@
-import React, { createRef } from 'react'
+import { createRef, SyntheticEvent } from 'react';
 import { signInWithEmailAndPassword } from '@firebase/auth';
-import { auth } from '../firebase'
-import { Card, Button, Form } from 'react-bootstrap'
+import { auth } from '../firebase';
+import { Card, Button, Form } from 'react-bootstrap';
 
 export default function Login() {
-  const emailRef = createRef<HTMLInputElement>()
-  const passwordRef = createRef<HTMLInputElement>()
+  const emailRef = createRef<HTMLInputElement>();
+  const passwordRef = createRef<HTMLInputElement>();
 
-  const handleSubmit = async (e: React.SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     try {
-      const user = await signInWithEmailAndPassword(auth, emailRef.current!.value, passwordRef.current!.value)
-      console.log(user)
+      const user = await signInWithEmailAndPassword(
+        auth,
+        emailRef.current!.value,
+        passwordRef.current!.value,
+      );
+      console.log(user);
     } catch (error: unknown) {
       if (error instanceof Error) {
-        console.log(error.message)
+        console.log(error.message);
       }
     }
-  }
+  };
 
   return (
     <Card>
@@ -31,9 +35,11 @@ export default function Login() {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" ref={passwordRef} />
           </Form.Group>
-          <Button className="w-100" type="submit">Submit</Button>
+          <Button className="w-100" type="submit">
+            Submit
+          </Button>
         </Form>
       </Card.Body>
     </Card>
-  )
+  );
 }

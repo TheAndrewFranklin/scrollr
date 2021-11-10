@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth"
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
 const app = initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -8,8 +8,8 @@ const app = initializeApp({
   storageBucket: process.env.REACT_APP_SOTRAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_APP_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENT_ID
-})
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+});
 
 export const auth = getAuth(app);
 export default app;
