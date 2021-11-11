@@ -23,7 +23,8 @@ import './theme/variables.css';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Home from './pages/Home';
-import { AuthContext, AuthProvider } from './contexts/Auth';
+import { AuthProvider } from './contexts/Auth';
+import PrivateRoute from './components/PrivateRoute';
 
 const App: React.FC = () => {
   return (
@@ -31,50 +32,36 @@ const App: React.FC = () => {
       <IonApp>
         <IonReactRouter>
           <IonRouterOutlet>
-            <AuthContext.Consumer>
-              {(user) =>
-                user ? (
-                  <Switch>
-                    <Route exact path="/home">
-                      <Home />
-                    </Route>
-                    <Route path="/">
-                      <Redirect to="/home" />
-                    </Route>
-                  </Switch>
-                ) : (
-                  <Switch>
-                    <Route exact path="/login">
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          minHeight: '100vh',
-                        }}
-                      >
-                        <Login />
-                      </div>
-                    </Route>
-                    <Route exact path="/register">
-                      <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          minHeight: '100vh',
-                        }}
-                      >
-                        <Register />
-                      </div>
-                    </Route>
-                    <Route path="/">
-                      <Redirect to="/login" />
-                    </Route>
-                  </Switch>
-                )
-              }
-            </AuthContext.Consumer>
+            <Switch>
+              <PrivateRoute component={Home} exact path="/home" />
+              <Route exact path="/login">
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minHeight: '100vh',
+                  }}
+                >
+                  <Login />
+                </div>
+              </Route>
+              <Route exact path="/register">
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minHeight: '100vh',
+                  }}
+                >
+                  <Register />
+                </div>
+              </Route>
+              <Route path="/">
+                <Redirect to="/home" />
+              </Route>
+            </Switch>
           </IonRouterOutlet>
         </IonReactRouter>
       </IonApp>

@@ -2,11 +2,13 @@ import { createRef, SyntheticEvent } from 'react';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { auth } from '../firebase';
 import { Card, Button, Form } from 'react-bootstrap';
+import { useHistory } from 'react-router';
 
 export default function Register() {
   const emailRef = createRef<HTMLInputElement>();
   const passwordRef = createRef<HTMLInputElement>();
   const passwordConfirmRef = createRef<HTMLInputElement>();
+  const history = useHistory();
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -16,6 +18,7 @@ export default function Register() {
         emailRef.current!.value,
         passwordRef.current!.value,
       );
+      history.push('/login');
       console.log(user);
     } catch (error: unknown) {
       if (error instanceof Error) {

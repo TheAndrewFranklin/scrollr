@@ -27,9 +27,6 @@ function reducer(state = initialState, action: { type: string }) {
 
 const store = createStore(reducer as any);
 
-store.dispatch({ type: 'INCREMENT' });
-store.dispatch({ type: 'DECREMENT' });
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
