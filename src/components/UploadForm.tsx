@@ -1,5 +1,7 @@
+import { IonInput, IonItem, IonList } from '@ionic/react';
 import React, { CSSProperties, useState } from 'react';
 import { Form } from 'react-bootstrap';
+import ProgressBar from './ProgressBar';
 
 type Props = { style: CSSProperties };
 
@@ -25,11 +27,12 @@ const UploadForm: React.FC<Props> = (props: Props) => {
 
   return (
     <div style={props.style}>
+      <Form>
+        <Form.Control type="file" onChange={handleNewImage} />
+      </Form>
       {error && <div className="error">{error}</div>}
       {file && <div>{file.name}</div>}
-      <Form>
-        <Form.Control onChange={handleNewImage} type="file" />
-      </Form>
+      {file && <ProgressBar file={file} setFile={setFile} />}
     </div>
   );
 };
