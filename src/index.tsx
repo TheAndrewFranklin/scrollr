@@ -6,26 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { reducer } from './reducer';
 
-const initialState = {
-  count: 42,
-};
-function reducer(state = initialState, action: { type: string }) {
-  switch (action.type) {
-    case 'INCREMENT':
-      return {
-        count: state.count + 1,
-      };
-    case 'DECREMENT':
-      return {
-        count: state.count - 1,
-      };
-    default:
-      return state;
-  }
-}
-
-const store = createStore(reducer as any);
+const store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>

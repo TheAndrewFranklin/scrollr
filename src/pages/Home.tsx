@@ -1,13 +1,16 @@
 import { Button } from 'react-bootstrap';
 import { auth } from '../firebase';
 import { connect } from 'react-redux';
+import UploadForm from '../components/UploadForm';
 
 function Home(props: any) {
   const handleLogout = async () => {
     try {
       await auth.signOut();
-    } catch (error) {
-      console.log(error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
     }
   };
 
@@ -45,6 +48,7 @@ function Home(props: any) {
         <h2>{props.count}</h2>
         <Button onClick={increment}>+</Button>
       </div>
+      <UploadForm style={{ margin: '4px' }}>Select Image</UploadForm>
       <Button onClick={handleLogout} style={{ margin: '4px' }}>
         Logout
       </Button>

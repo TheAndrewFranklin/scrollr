@@ -1,13 +1,9 @@
 import React, { useContext } from 'react';
-import { ConnectedComponent } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { AuthContext } from '../contexts/Auth';
 
 type InnerComponent = {
-  component: ConnectedComponent<
-    (props: any) => JSX.Element,
-    Omit<any, 'count' | 'dispatch'>
-  >;
+  component: React.ComponentType<any>;
   [key: string]: any;
 };
 
