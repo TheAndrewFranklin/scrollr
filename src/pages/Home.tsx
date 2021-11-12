@@ -2,6 +2,7 @@ import { Button } from 'react-bootstrap';
 import { auth } from '../firebase';
 import { connect } from 'react-redux';
 import UploadForm from '../components/UploadForm';
+import ImageGrid from '../components/ImageGrid';
 
 function Home(props: any) {
   const handleLogout = async () => {
@@ -36,6 +37,7 @@ function Home(props: any) {
         minHeight: '100vh',
       }}
     >
+      <ImageGrid />
       <h2>Counter</h2>
       <div
         style={{
