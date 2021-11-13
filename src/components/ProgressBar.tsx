@@ -3,7 +3,7 @@ import useStorage from '../hooks/useStorage';
 
 type Props = {
   file: File;
-  setFile: React.Dispatch<React.SetStateAction<File | null>>;
+  setFile: React.Dispatch<React.SetStateAction<File | undefined>>;
 };
 
 const ProgressBar: React.FC<Props> = ({ file, setFile }: Props) => {
@@ -12,7 +12,7 @@ const ProgressBar: React.FC<Props> = ({ file, setFile }: Props) => {
 
   useEffect(() => {
     if (url) {
-      setFile(null);
+      setFile(undefined);
     }
   }, [url, setFile]);
 

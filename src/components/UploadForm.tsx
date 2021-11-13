@@ -1,4 +1,3 @@
-import { IonInput, IonItem, IonList } from '@ionic/react';
 import React, { CSSProperties, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import ProgressBar from './ProgressBar';
@@ -6,8 +5,8 @@ import ProgressBar from './ProgressBar';
 type Props = { style: CSSProperties };
 
 const UploadForm: React.FC<Props> = (props: Props) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [error, setError] = useState<Error | null>(null);
+  const [file, setFile] = useState<File>();
+  const [error, setError] = useState<Error>();
 
   const types = ['image/png', 'image/jpeg'];
 
@@ -17,10 +16,10 @@ const UploadForm: React.FC<Props> = (props: Props) => {
     if (selected && types.includes(selected.type)) {
       setFile(selected);
       if (error) {
-        setError(null);
+        setError(undefined);
       }
     } else {
-      setFile(null);
+      setFile(undefined);
       setError(new Error('Please select an image file (png or jpeg)'));
     }
   };

@@ -1,0 +1,11 @@
+.img-grid {
+  display: grid;
+  gap: 1em;
+  grid-auto-flow: column;
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+.img-grid > * {
+  max-height: 200px;
+}

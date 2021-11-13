@@ -3,7 +3,6 @@ import { projectFirestore } from '../firebase';
 import {
   DocumentData,
   collection as collect,
-  limit,
   onSnapshot,
   orderBy,
   query,
@@ -17,7 +16,6 @@ const useFirestore = (collection: string) => {
       query(
         collect(projectFirestore, collection),
         orderBy('createdAt', 'desc'),
-        limit(3),
       ),
       (snapshot) => {
         const documents: Array<DocumentData> = [];
