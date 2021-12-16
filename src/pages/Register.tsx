@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { auth } from '../firebase';
 import { Card, Button, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function Register() {
   const emailRef = createRef<HTMLInputElement>();
@@ -44,8 +45,9 @@ export default function Register() {
             <Form.Control type="password" ref={passwordConfirmRef} />
           </Form.Group>
           <Button className="w-100" type="submit">
-            Submit
+            Register
           </Button>
+          <Link to="/login">Go To Login</Link>
         </Form>
       </Card.Body>
     </Card>
