@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { projectStorage, projectFirestore } from '../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { collection, addDoc, Timestamp } from '@firebase/firestore';
+import { v4 } from 'uuid';
 
 const useStorage = (file: File) => {
   const [progress, setProgress] = useState(0);
@@ -9,7 +10,10 @@ const useStorage = (file: File) => {
   const [url, setUrl] = useState<string>();
 
   useEffect(() => {
-    const storageRef = ref(projectStorage, file.name);
+    const storageRef = ref(
+      projectStorage,
+      file.name.replace(/(\.[^/.]+$)/, `-${v4()}$1`),
+    );
     const collectionRef = collection(projectFirestore, 'images');
 
     const uploadTask = uploadBytesResumable(storageRef, file);

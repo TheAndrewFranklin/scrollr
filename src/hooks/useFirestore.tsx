@@ -6,6 +6,7 @@ import {
   onSnapshot,
   orderBy,
   query,
+  limit,
 } from 'firebase/firestore';
 
 const useFirestore = (collection: string) => {
@@ -15,6 +16,7 @@ const useFirestore = (collection: string) => {
     const unsubscribe = onSnapshot(
       query(
         collect(projectFirestore, collection),
+        limit(3),
         orderBy('createdAt', 'desc'),
       ),
       (snapshot) => {
