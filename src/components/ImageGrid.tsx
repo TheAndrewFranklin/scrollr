@@ -1,4 +1,5 @@
 import useFirestore from '../hooks/useFirestore';
+import DeleteButton from './DeleteButton';
 import './ImageGrid.css';
 
 const ImageGrid = () => {
@@ -6,8 +7,11 @@ const ImageGrid = () => {
 
   return (
     <div className="img-grid">
-      {docs.map((doc) => (
-        <img src={doc.url} alt="uh-oh" key={doc.id} />
+      {docs.map((document) => (
+        <div className="img-item" key={document.id}>
+          <img src={document.url} alt="uh-oh" />
+          <DeleteButton document={document}>Delete</DeleteButton>
+        </div>
       ))}
     </div>
   );

@@ -6,6 +6,11 @@
   justify-items: stretch;
 }
 
-.img-grid > * {
+.img-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.img-item > img {
   max-height: 200px;
 }
