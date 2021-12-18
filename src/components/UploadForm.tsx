@@ -11,7 +11,7 @@ const UploadForm: React.FC<Props> = (props: Props) => {
   const types = ['image/png', 'image/jpeg'];
 
   const handleNewImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selected = event.target!.files![0];
+    const selected = event.target?.files?.[0];
 
     if (selected && types.includes(selected.type)) {
       setFile(selected);
