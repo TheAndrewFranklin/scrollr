@@ -7,8 +7,13 @@
 }
 
 .img-item {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+}
+
+.img-item > button {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .img-item > img {

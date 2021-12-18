@@ -1,21 +1,24 @@
 import { projectStorage, projectFirestore } from '../firebase';
 import { ref, deleteObject } from 'firebase/storage';
-import { doc, deleteDoc } from 'firebase/firestore';
+import { doc, deleteDoc, DocumentData } from 'firebase/firestore';
 
-const handleDelete = (document: any) => {
-  const deleteRef = ref(projectStorage, document.url);
+const handleDelete = (data: DocumentData) => {
+  const deleteRef = ref(projectStorage, data.document.url);
+
   deleteObject(deleteRef)
     .then(() => {
-      deleteDoc(doc(projectFirestore, 'images', document.id)).then(() =>
-        console.log('successfully deleted'),
-      );
+      deleteDoc(doc(projectFirestore, 'images', data.document.id))
+        .then(() => console.log('successfully deleted'))
+        .catch((error) => {
+          console.log(error);
+        });
     })
     .catch((error) => {
       console.log(error);
     });
 };
 
-const DeleteButton = (document: any) => {
+const DeleteButton = (document: DocumentData) => {
   return <button onClick={() => handleDelete(document)}>Delete</button>;
 };
 

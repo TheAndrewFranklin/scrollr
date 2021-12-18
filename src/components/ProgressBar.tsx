@@ -8,13 +8,13 @@ type Props = {
 
 const ProgressBar: React.FC<Props> = ({ file, setFile }: Props) => {
   const { url, progress } = useStorage(file);
-  console.log(progress, url);
+  console.log(progress);
 
   useEffect(() => {
     if (url) {
       setFile(undefined);
     }
-  }, [url, setFile]);
+  }, [url]);
 
   return (
     <div
