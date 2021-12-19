@@ -7,16 +7,20 @@ import {
   orderBy,
   query,
   limit,
+  QueryDocumentSnapshot,
+  startAfter,
+  getDocs,
 } from 'firebase/firestore';
 
 const useFirestore = (collection: string) => {
   const [docs, setDocs] = useState<Array<DocumentData>>([]);
+  const [count, setCount] = useState<number>(3);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
       query(
         collect(projectFirestore, collection),
-        limit(3),
+        limit(count),
         orderBy('createdAt', 'desc'),
       ),
       (snapshot) => {
@@ -28,10 +32,14 @@ const useFirestore = (collection: string) => {
       },
     );
 
-    return () => unsubscribe();
-  }, [collection]);
+    return unsubscribe;
+  }, [collection, count]);
 
-  return { docs };
+  const loadMore = async () => {
+    setCount((prevState) => prevState + 3);
+  };
+
+  return { docs, loadMore };
 };
 
 export default useFirestore;
