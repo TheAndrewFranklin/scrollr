@@ -7,9 +7,6 @@ import {
   orderBy,
   query,
   limit,
-  QueryDocumentSnapshot,
-  startAfter,
-  getDocs,
 } from 'firebase/firestore';
 
 const useFirestore = (collection: string) => {
@@ -35,7 +32,7 @@ const useFirestore = (collection: string) => {
     return unsubscribe;
   }, [collection, count]);
 
-  const loadMore = async () => {
+  const loadMore = () => {
     setCount((prevState) => prevState + 3);
   };
 
